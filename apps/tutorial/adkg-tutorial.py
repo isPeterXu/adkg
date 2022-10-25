@@ -73,17 +73,11 @@ if __name__ == "__main__":
     logging.info("Running ADKG ...")
     HbmpcConfig.load_config()
     
-    loop = uvloop.new_event_loop()
-    asyncio.set_event_loop(loop)
-    try:
-        loop.run_until_complete(
-            _run(
+    asyncio.run(_run(
                 HbmpcConfig.peers,
                 HbmpcConfig.N,
                 HbmpcConfig.t,
                 HbmpcConfig.my_id,
                 HbmpcConfig.time,
-            )
-        )
-    finally:
-        loop.close()
+                )
+    )

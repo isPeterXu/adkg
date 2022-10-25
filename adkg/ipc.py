@@ -72,7 +72,7 @@ class NodeCommunicator(object):
         router.bind(f"tcp://*:{self.peers_config[self.my_id].port}")
         # Start a task to receive messages on this node.
         self._router_task = asyncio.create_task(self._recv_loop(router))
-        self._router_task.add_done_callback(print_exception_callback)
+        # self._router_task.add_done_callback(print_exception_callback) # This leads to a CancelledError Exception
 
         # Setup one dealer per receving party. This is used
         # as a client to send messages to other parties.
